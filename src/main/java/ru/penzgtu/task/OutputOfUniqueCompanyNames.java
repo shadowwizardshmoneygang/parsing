@@ -21,15 +21,12 @@ public class OutputOfUniqueCompanyNames implements TaskRunnable {
 
         // Подсчёт кол-ва упоминаний той или иной компании.
         Map<String, Integer> quantityOfCompanyNames = new HashMap<>();
-        data.data.forEach(user -> {
-            // Отдельно созданные переменные я использую для того, чтобы не превышать
-            // длинну строки в 100 символов.
+        data.getData().forEach(user -> {
             String company = user.getJob().getCompany();
             if (!quantityOfCompanyNames.containsKey(company)) {
                 quantityOfCompanyNames.put(company, 0);
             }
-            int quantity = quantityOfCompanyNames.get(company);
-            quantityOfCompanyNames.put(company, quantity + 1);
+            quantityOfCompanyNames.put(company, quantityOfCompanyNames.get(company) + 1);
         });
 
         // Вывод в консольку.

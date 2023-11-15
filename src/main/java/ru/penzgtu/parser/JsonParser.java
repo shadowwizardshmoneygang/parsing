@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 /**
  * Парсинг json-файла.
  */
-public class JsonParser implements AutoCloseable {
+public class JsonParser {
     private final String path;
     // Небольшая настройка, которая исправит ошибку с парсингом LocalDateTime.
     private final Gson gson = new GsonBuilder()
@@ -39,10 +39,5 @@ public class JsonParser implements AutoCloseable {
     public <T> T parse(Class<T> classOfType) throws IOException {
         FileReader reader = new FileReader(path);
         return gson.fromJson(reader, classOfType);
-    }
-
-    @Override
-    public void close() {
-        // Что можно здесь такого написать, я не знаю.
     }
 }

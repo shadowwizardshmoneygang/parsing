@@ -16,11 +16,14 @@ public class OutputOfAllActiveUsers implements TaskRunnable {
     @Override
     public void run() {
         System.out.println("[?] Output of all active users.");
-        data.data.stream()
+        data.getData().stream()
                 .filter(user -> user.getStatus().equals(Status.ACTIVE))
-                .map(user -> user.getName().getFirst() + " "
-                        + user.getName().getMiddle().charAt(0) + ". "
-                        + user.getName().getLast() + ".")
+                .map(user -> String.format(
+                        "%s. %s. %s.",
+                        user.getName().getFirst().charAt(0),
+                        user.getName().getMiddle().charAt(0),
+                        user.getName().getLast()
+                ))
                 .forEach(System.out::println);
     }
 }

@@ -13,20 +13,40 @@ public class Job {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getDescriptor() {
         return descriptor;
+    }
+
+    public void setDescriptor(String descriptor) {
+        this.descriptor = descriptor;
     }
 
     public String getArea() {
         return area;
     }
 
+    public void setArea(String area) {
+        this.area = area;
+    }
+
     public String getType() {
         return type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getCompany() {
         return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     @Override

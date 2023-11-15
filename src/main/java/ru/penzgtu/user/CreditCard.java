@@ -11,12 +11,24 @@ public class CreditCard {
         return number;
     }
 
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
     public String getCvv() {
         return cvv;
     }
 
+    public void setCvv(String cvv) {
+        this.cvv = cvv;
+    }
+
     public String getIssuer() {
         return issuer;
+    }
+
+    public void setIssuer(String issuer) {
+        this.issuer = issuer;
     }
 
     @Override

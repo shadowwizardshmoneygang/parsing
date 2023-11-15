@@ -21,15 +21,12 @@ public class OutputCreditCardUsageStatistics implements TaskRunnable {
 
         // Подсчёт кол-ва пользователей той или иной карты.
         Map<String, Integer> creditCardUsageStatistics = new HashMap<>();
-        data.data.forEach(user -> {
-            // Отдельно созданные переменные я использую для того, чтобы не превышать
-            // длинну строки в 100 символов.
+        data.getData().forEach(user -> {
             String issuer = user.getCreditCard().getIssuer();
             if (!creditCardUsageStatistics.containsKey(issuer)) {
                 creditCardUsageStatistics.put(issuer, 0);
             }
-            int quantity = creditCardUsageStatistics.get(issuer);
-            creditCardUsageStatistics.put(issuer, quantity + 1);
+            creditCardUsageStatistics.put(issuer, creditCardUsageStatistics.get(issuer) + 1);
         });
 
         // Более-менее красивый вывод.

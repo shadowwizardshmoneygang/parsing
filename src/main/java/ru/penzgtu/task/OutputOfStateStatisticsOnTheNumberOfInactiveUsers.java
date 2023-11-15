@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class OutputOfStateStatisticsOnTheNumberOfInactiveUsers implements TaskRunnable {
     private final Data data;
-    private final int limit = 5;
+    private final int LIMIT = 5;
 
     public OutputOfStateStatisticsOnTheNumberOfInactiveUsers(Data data) {
         this.data = data;
@@ -24,23 +24,20 @@ public class OutputOfStateStatisticsOnTheNumberOfInactiveUsers implements TaskRu
 
         // Подсчёт неактивных пользователей по штатам.
         Map<String, Integer> stateStatisticsOnTheNumberOfInactiveUsers = new HashMap<>();
-        data.data.stream()
+        data.getData().stream()
                 .filter(user -> user.getStatus().equals(Status.DISABLED))
                 .forEach(user -> {
-                    // Отдельно созданные переменные я использую для того, чтобы не превышать
-                    // длинну строки в 100 символов.
                     String state = user.getLocation().getState();
                     if (!stateStatisticsOnTheNumberOfInactiveUsers.containsKey(state)) {
                         stateStatisticsOnTheNumberOfInactiveUsers.put(state, 0);
                     }
-                    int quantity = stateStatisticsOnTheNumberOfInactiveUsers.get(state);
-                    stateStatisticsOnTheNumberOfInactiveUsers.put(state, quantity + 1);
+                    stateStatisticsOnTheNumberOfInactiveUsers.put(state, stateStatisticsOnTheNumberOfInactiveUsers.get(state) + 1);
                 });
 
         // Более-менее нормальный вывод.
         stateStatisticsOnTheNumberOfInactiveUsers.entrySet().stream()
                 .sorted((first, second) -> second.getValue().compareTo(first.getValue()))
-                .limit(limit)
+                .limit(LIMIT)
                 .map(state -> state.getKey() + ": " + state.getValue() + ".")
                 .forEach(System.out::println);
     }

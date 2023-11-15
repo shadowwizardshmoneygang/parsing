@@ -7,7 +7,7 @@ import ru.penzgtu.user.Data;
  */
 public class OutputTheNumberOfUsersUsingGmail implements TaskRunnable {
     private final Data data;
-    private final String emailDomain = "gmail.com";
+    private final String EMAIL_DOMAIN = "gmail.com";
 
     public OutputTheNumberOfUsersUsingGmail(Data data) {
         this.data = data;
@@ -16,10 +16,10 @@ public class OutputTheNumberOfUsersUsingGmail implements TaskRunnable {
     @Override
     public void run() {
         System.out.println("[?] Output the number of users using gmail.");
-        System.out.println("Quantity: " + data.data.stream()
+        System.out.println("Quantity: " + data.getData().stream()
             .filter(user -> {
                 for (String email : user.getEmails()) {
-                    if (email.contains(emailDomain)) {
+                    if (email.contains(EMAIL_DOMAIN)) {
                         return true;
                     }
                 }

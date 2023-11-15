@@ -12,8 +12,8 @@ import java.time.temporal.ChronoUnit;
  */
 public class OutputOfTheHighestPaidAndYoungestUser implements TaskRunnable {
     private final Data data;
-    private final int age = 21;
-    private final int limit = 1;
+    private final int AGE = 21;
+    private final int LIMIT = 1;
 
     public OutputOfTheHighestPaidAndYoungestUser(Data data) {
         this.data = data;
@@ -22,11 +22,11 @@ public class OutputOfTheHighestPaidAndYoungestUser implements TaskRunnable {
     @Override
     public void run() {
         System.out.println("[?] Output of the highest paid and youngest user.");
-        data.data.stream()
+        data.getData().stream()
                 .filter(user -> user.getStatus().equals(Status.ACTIVE))
-                .filter(user -> ChronoUnit.YEARS.between(user.getBirthday(), LocalDateTime.now()) < age)
+                .filter(user -> ChronoUnit.YEARS.between(user.getBirthday(), LocalDateTime.now()) < AGE)
                 .sorted((first, second) -> second.getMonthlySalary().compareTo(first.getMonthlySalary()))
-                .limit(limit)
+                .limit(LIMIT)
                 .forEach(System.out::println);
     }
 }

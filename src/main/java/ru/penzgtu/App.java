@@ -9,7 +9,8 @@ import java.util.stream.Stream;
 
 public class App {
     public static void main(String[] args) {
-        try (JsonParser parser = new JsonParser("src/main/java/ru/penzgtu/data.json")) {
+        try {
+            JsonParser parser = new JsonParser("src/main/java/ru/penzgtu/data.json");
             Data data = parser.parse(Data.class);
             Stream.of(
                     new OutputOfAllActiveUsers(data),
@@ -22,7 +23,7 @@ public class App {
                     new OutputOfUniqueCompanyNames(data)
             ).forEach(TaskRunnable::run);
         } catch (IOException exception) {
-            System.out.println(exception.toString());
+            System.out.println(exception.getMessage());
         }
     }
 }

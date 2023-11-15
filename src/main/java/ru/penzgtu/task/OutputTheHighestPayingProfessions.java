@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  */
 public class OutputTheHighestPayingProfessions implements TaskRunnable {
     private final Data data;
-    private final BigDecimal highestPaying = BigDecimal.valueOf(500);
+    private final BigDecimal HIGHEST_PAYING = BigDecimal.valueOf(500);
 
     public OutputTheHighestPayingProfessions(Data data) {
         this.data = data;
@@ -19,8 +19,8 @@ public class OutputTheHighestPayingProfessions implements TaskRunnable {
     @Override
     public void run() {
         System.out.println("[?] Output the highest paying professions.");
-        data.data.stream()
-                .filter(user -> user.getMonthlySalary().compareTo(highestPaying) > 0)
+        data.getData().stream()
+                .filter(user -> user.getMonthlySalary().compareTo(HIGHEST_PAYING) > 0)
                 .map(user -> user.getJob().getType())
                 .distinct()
                 .sorted()
